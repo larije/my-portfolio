@@ -3,21 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+<title>Larryjey — Technical Virtual Assistant</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-<script src="./image-slot.js"></script>
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" rx="14" fill="#0f1115"></rect>
-    <text x="50" y="62" font-family="Inter, sans-serif" font-size="34" font-weight="700" fill="#31d8c2" text-anchor="middle">LM</text>
-  </svg>
-</template>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; scroll-padding-top: 96px; }
@@ -48,9 +37,10 @@
     [data-about-grid] { grid-template-columns: 1fr !important; }
   }
 </style>
-</helmet>
+</head>
+<body>
 
-<div ref="{{ rootRef }}" data-theme="dark" style="--bg:#0A0A0A; --bg2:#111111; --surface:rgba(255,255,255,0.03); --surface2:rgba(255,255,255,0.055); --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.16); --text:#FFFFFF; --muted:#ACACB6; --accent:#31D8C2; --accent-soft:rgba(38,221,193,0.12); --accent-glow:rgba(38,221,193,0.18); --dust:rgba(255,255,255,0.65); --geo:rgba(255,255,255,0.05); --thumb:#0b0b0c; --nav-scrolled:rgba(10,10,10,0.7); font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; -webkit-font-smoothing:antialiased; letter-spacing:-0.011em;">
+<div id="lm-root" data-theme="dark" style="--bg:#0A0A0A; --bg2:#111111; --surface:rgba(255,255,255,0.03); --surface2:rgba(255,255,255,0.055); --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.16); --text:#FFFFFF; --muted:#ACACB6; --accent:#31D8C2; --accent-soft:rgba(38,221,193,0.12); --accent-glow:rgba(38,221,193,0.18); --dust:rgba(255,255,255,0.65); --geo:rgba(255,255,255,0.05); --thumb:#0b0b0c; --nav-scrolled:rgba(10,10,10,0.7); font-family:'Inter',-apple-system,BlinkMacSystemFont,system-ui,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; -webkit-font-smoothing:antialiased; letter-spacing:-0.011em;">
 
   <!-- NAV -->
   <nav data-nav="" style="position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:18px clamp(20px,5vw,64px); background:transparent; border-bottom:1px solid transparent; transition:background .4s ease, border-color .4s ease, backdrop-filter .4s ease;">
@@ -72,24 +62,24 @@
       <a href="https://github.com/larije" target="_blank" rel="noopener" style="display:grid; place-items:center; width:38px; height:38px; border-radius:999px; background:var(--surface); border:1px solid var(--border); color:var(--text); text-decoration:none;" aria-label="GitHub">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.73-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"></path></svg>
       </a>
-      <button onClick="{{ toggleTheme }}" data-theme-btn="" style="display:grid; place-items:center; width:38px; height:38px; border-radius:999px; background:var(--surface); border:1px solid var(--border); color:var(--text); cursor:pointer;" aria-label="Toggle theme">
+      <button onclick="lm.toggleTheme()" data-theme-btn="" style="display:grid; place-items:center; width:38px; height:38px; border-radius:999px; background:var(--surface); border:1px solid var(--border); color:var(--text); cursor:pointer;" aria-label="Toggle theme">
         <svg data-theme-icon="" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"></path></svg>
       </button>
-      <button onClick="{{ downloadResume }}" style="font-family:inherit; cursor:pointer; font-size:13.5px; font-weight:600; color:var(--bg); background:var(--text); border:none; padding:10px 17px; border-radius:999px;">Resume</button>
+      <button onclick="lm.downloadResume()" style="font-family:inherit; cursor:pointer; font-size:13.5px; font-weight:600; color:var(--bg); background:var(--text); border:none; padding:10px 17px; border-radius:999px;">Resume</button>
     </div>
-    <button data-hamburger="" onClick="{{ toggleMenu }}" style="display:none; align-items:center; justify-content:center; width:40px; height:40px; border-radius:11px; background:var(--surface); border:1px solid var(--border); color:var(--text); cursor:pointer;" aria-label="Menu">
+    <button data-hamburger="" onclick="lm.toggleMenu()" style="display:none; align-items:center; justify-content:center; width:40px; height:40px; border-radius:11px; background:var(--surface); border:1px solid var(--border); color:var(--text); cursor:pointer;" aria-label="Menu">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
     </button>
   </nav>
 
   <!-- MOBILE MENU -->
   <div data-mobile-menu="" style="display:none; position:fixed; inset:0; z-index:99; background:rgba(10,10,10,0.97); backdrop-filter:blur(20px); flex-direction:column; align-items:center; justify-content:center; gap:6px;">
-    <a href="#home" onClick="{{ closeMenu }}" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">Home</a>
-    <a href="#about" onClick="{{ closeMenu }}" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">About</a>
-    <a href="#services" onClick="{{ closeMenu }}" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">Services</a>
-    <a href="#skills" onClick="{{ closeMenu }}" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">Stack</a>
-    <a href="#work" onClick="{{ closeMenu }}" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">Work</a>
-    <a href="#contact" onClick="{{ closeMenu }}" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">Contact</a>
+    <a href="#home" onclick="lm.closeMenu()" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">Home</a>
+    <a href="#about" onclick="lm.closeMenu()" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">About</a>
+    <a href="#services" onclick="lm.closeMenu()" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">Services</a>
+    <a href="#skills" onclick="lm.closeMenu()" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">Stack</a>
+    <a href="#work" onclick="lm.closeMenu()" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">Work</a>
+    <a href="#contact" onclick="lm.closeMenu()" style="font-size:28px; font-weight:600; color:var(--text); text-decoration:none; padding:10px;">Contact</a>
   </div>
 
   <!-- HERO -->
@@ -120,7 +110,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
           </a>
           <a href="#contact" style="display:inline-flex; align-items:center; font-size:15px; font-weight:600; color:var(--text); background:var(--surface2); text-decoration:none; padding:14px 26px; border-radius:12px; border:1px solid var(--border2);">Contact Me</a>
-          <button onClick="{{ downloadResume }}" style="font-family:inherit; cursor:pointer; display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:600; color:var(--text); background:transparent; padding:14px 24px; border-radius:12px; border:1px solid var(--border);">
+          <button onclick="lm.downloadResume()" style="font-family:inherit; cursor:pointer; display:inline-flex; align-items:center; gap:9px; font-size:15px; font-weight:600; color:var(--text); background:transparent; padding:14px 24px; border-radius:12px; border:1px solid var(--border);">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"></path></svg>
             Download Resume
           </button>
@@ -458,7 +448,7 @@
           <a href="https://facebook.com/Larryjey.O.Magkidong" target="_blank" rel="noopener" data-social=""><span data-soicon="">f</span><span data-sotext=""><span data-solabel="">Facebook</span><span data-soval="">Larryjey O. Magkidong</span></span></a>
           <a href="https://discord.com/users/nythreal" target="_blank" rel="noopener" data-social=""><span data-soicon="">⚇</span><span data-sotext=""><span data-solabel="">Discord</span><span data-soval="">nythreal</span></span></a>
         </div>
-        <button onClick="{{ downloadResume }}" style="font-family:inherit; cursor:pointer; margin-top:26px; display:inline-flex; align-items:center; gap:9px; font-size:14.5px; font-weight:600; color:var(--text); background:var(--surface2); border:1px solid var(--border2); padding:12px 20px; border-radius:12px;">
+        <button onclick="lm.downloadResume()" style="font-family:inherit; cursor:pointer; margin-top:26px; display:inline-flex; align-items:center; gap:9px; font-size:14.5px; font-weight:600; color:var(--text); background:var(--surface2); border:1px solid var(--border2); padding:12px 20px; border-radius:12px;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"></path></svg>
           Download Resume
         </button>
@@ -482,20 +472,152 @@
     </div>
   </footer>
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#31D8C2&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Theme&quot;},&quot;ambientMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Theme&quot;}}">
-class Component extends DCLogic {
-  componentDidMount() {
-    const root = this.root;
-    if (!root) return;
+<script>>
+customElements.define('image-slot', class extends HTMLElement {
+  connectedCallback() {
+    if (this._init) return;
+    this._init = true;
+    const src = this.getAttribute('src');
+    const fit = this.getAttribute('fit') || 'cover';
+    const radius = this.getAttribute('radius');
+    if (radius) this.style.borderRadius = radius + 'px';
+    this.style.overflow = 'hidden';
+    if (src) {
+      const img = document.createElement('img');
+      img.src = src;
+      img.style.cssText = `width:100%;height:100%;object-fit:${fit};border-radius:inherit;display:block;`;
+      img.onerror = () => { img.style.display = 'none'; };
+      this.appendChild(img);
+    }
+  }
+  static get observedAttributes() { return ['src']; }
+  attributeChangedCallback() { this._init = false; this.innerHTML = ''; this.connectedCallback(); }
+});
 
+const lm = {
+  root: null,
+
+  init() {
+    this.root = document.getElementById('lm-root');
+    if (!this.root) return;
     this.applyAccent();
-    if (this.props.defaultTheme === 'light') this.applyTheme('light');
+    this._buildBg();
+    this._buildStyles();
+    this._buildMiniProjects();
+    this._setupGlow();
+    this._setupNav();
+    this._setupSections();
+    this._setupReveal();
+  },
 
-    const motion = this.props.ambientMotion !== false;
+  toggleTheme() {
+    const cur = this.root.getAttribute('data-theme');
+    this.applyTheme(cur === 'light' ? 'dark' : 'light');
+  },
 
-    // geometric background layer (furthest back)
-    if (motion && !root.querySelector('[data-geo]')) {
+  toggleMenu() {
+    const m = this.root.querySelector('[data-mobile-menu]');
+    m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+  },
+
+  closeMenu() {
+    const m = this.root.querySelector('[data-mobile-menu]');
+    if (m) m.style.display = 'none';
+  },
+
+  async downloadResume() {
+    const src = 'uploads/CV-664079ab.png';
+    const filename = 'Larryjey-Magkidong-CV.png';
+    try {
+      const res = await fetch(src);
+      if (!res.ok) throw new Error();
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    } catch {
+      const a = document.createElement('a');
+      a.href = src; a.download = filename; a.target = '_blank';
+      document.body.appendChild(a); a.click();
+      document.body.removeChild(a);
+    }
+  },
+
+  applyAccent() {
+    if (!this.root) return;
+    const base = '#31D8C2';
+    const light = this.root.getAttribute('data-theme') === 'light';
+    const a = light ? this.darken(base, 0.42) : base;
+    this.root.style.setProperty('--accent', a);
+    this.root.style.setProperty('--accent-soft', this.hexToRgba(a, light ? 0.16 : 0.12));
+    this.root.style.setProperty('--accent-glow', this.hexToRgba(a, light ? 0.22 : 0.18));
+  },
+
+  darken(hex, amt) {
+    let h = (hex || '').replace('#', '').trim();
+    if (h.length === 3) h = h.split('').map(c => c + c).join('');
+    const n = parseInt(h, 16);
+    if (isNaN(n) || h.length !== 6) return hex;
+    let r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+    r = Math.round(r * (1 - amt)); g = Math.round(g * (1 - amt)); b = Math.round(b * (1 - amt));
+    return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
+  },
+
+  hexToRgba(hex, alpha) {
+    let h = (hex || '').replace('#', '').trim();
+    if (h.length === 3) h = h.split('').map(c => c + c).join('');
+    const n = parseInt(h, 16);
+    if (isNaN(n) || h.length !== 6) return `rgba(38,221,193,${alpha})`;
+    const r2 = (n >> 16) & 255, g2 = (n >> 8) & 255, b2 = n & 255;
+    return `rgba(${r2},${g2},${b2},${alpha})`;
+  },
+
+  applyTheme(mode) {
+    const r = this.root;
+    if (mode === 'light') {
+      r.style.setProperty('--bg', '#EAEBEE');
+      r.style.setProperty('--bg2', '#FFFFFF');
+      r.style.setProperty('--surface', 'rgba(255,255,255,0.75)');
+      r.style.setProperty('--surface2', 'rgba(255,255,255,0.95)');
+      r.style.setProperty('--border', 'rgba(0,0,0,0.12)');
+      r.style.setProperty('--border2', 'rgba(0,0,0,0.22)');
+      r.style.setProperty('--text', '#0A0A0A');
+      r.style.setProperty('--muted', '#4E4E57');
+      r.style.setProperty('--dust', 'rgba(20,20,30,0.5)');
+      r.style.setProperty('--geo', 'rgba(0,0,0,0.06)');
+      r.style.setProperty('--thumb', '#DBDDE2');
+      r.style.setProperty('--nav-scrolled', 'rgba(234,235,238,0.82)');
+      r.setAttribute('data-theme', 'light');
+    } else {
+      r.style.setProperty('--bg', '#0A0A0A');
+      r.style.setProperty('--bg2', '#111111');
+      r.style.setProperty('--surface', 'rgba(255,255,255,0.03)');
+      r.style.setProperty('--surface2', 'rgba(255,255,255,0.055)');
+      r.style.setProperty('--border', 'rgba(255,255,255,0.08)');
+      r.style.setProperty('--border2', 'rgba(255,255,255,0.16)');
+      r.style.setProperty('--text', '#FFFFFF');
+      r.style.setProperty('--muted', '#ACACB6');
+      r.style.setProperty('--dust', 'rgba(255,255,255,0.65)');
+      r.style.setProperty('--geo', 'rgba(255,255,255,0.05)');
+      r.style.setProperty('--thumb', '#0b0b0c');
+      r.style.setProperty('--nav-scrolled', 'rgba(10,10,10,0.7)');
+      r.setAttribute('data-theme', 'dark');
+    }
+    this.applyAccent();
+    const icon = this.root.querySelector('[data-theme-icon]');
+    if (icon) {
+      icon.innerHTML = mode === 'light'
+        ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'
+        : '<path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/>';
+    }
+  },
+
+  _buildBg() {
+    const root = this.root;
+    if (!root.querySelector('[data-geo]')) {
       const geo = document.createElement('div');
       geo.setAttribute('data-geo', '');
       geo.setAttribute('aria-hidden', 'true');
@@ -515,9 +637,7 @@ class Component extends DCLogic {
       while (wrap.firstChild) geo.appendChild(wrap.firstChild);
       root.insertBefore(geo, root.firstChild);
     }
-
-    // ambient dust layer
-    if (motion && !root.querySelector('[data-dust]')) {
+    if (!root.querySelector('[data-dust]')) {
       const dust = document.createElement('div');
       dust.setAttribute('data-dust', '');
       dust.setAttribute('aria-hidden', 'true');
@@ -534,8 +654,11 @@ class Component extends DCLogic {
       }
       root.insertBefore(dust, root.firstChild);
     }
+  },
 
-    if (!document.getElementById('lm3-runtime-styles')) {
+  _buildStyles() {
+    if (document.getElementById('lm3-runtime-styles')) return;
+    {
       const st = document.createElement('style');
       st.id = 'lm3-runtime-styles';
       st.textContent = `
@@ -600,8 +723,9 @@ class Component extends DCLogic {
       `;
       document.head.appendChild(st);
     }
+  },
 
-    // mini projects
+  _buildMiniProjects() {
     const mini = [
       ['TRANSTAX','Tax computation & filing system','Next.js · MySQL'],
       ['FarmConnect','Marketplace linking farmers to buyers','React · Node.js'],
@@ -613,7 +737,7 @@ class Component extends DCLogic {
       ['Investor Message Generator','AI-assisted outreach copy','AI · Next.js'],
       ['Automation Scripts','Zapier & Apps Script workflows','Zapier · Make'],
     ];
-    const mg = root.querySelector('[data-mini-grid]');
+    const mg = this.root.querySelector('[data-mini-grid]');
     if (mg) {
       mg.innerHTML = '';
       mini.forEach(([n, d, t]) => {
@@ -624,19 +748,21 @@ class Component extends DCLogic {
         mg.appendChild(c);
       });
     }
+  },
 
-    // cursor-follow glow on glass cards
-    root.querySelectorAll('[data-glow]').forEach(card => {
+  _setupGlow() {
+    this.root.querySelectorAll('[data-glow]').forEach(card => {
       card.addEventListener('pointermove', (ev) => {
         const r = card.getBoundingClientRect();
         card.style.setProperty('--mx', ((ev.clientX - r.left) / r.width * 100) + '%');
         card.style.setProperty('--my', ((ev.clientY - r.top) / r.height * 100) + '%');
       });
     });
+  },
 
-    // nav scroll blur
-    const nav = root.querySelector('[data-nav]');
-    this._onScroll = () => {
+  _setupNav() {
+    const nav = this.root.querySelector('[data-nav]');
+    const onScroll = () => {
       if (window.scrollY > 24) {
         nav.style.background = 'var(--nav-scrolled)';
         nav.style.borderBottomColor = 'var(--border)';
@@ -649,13 +775,14 @@ class Component extends DCLogic {
         nav.style.webkitBackdropFilter = 'blur(0px)';
       }
     };
-    window.addEventListener('scroll', this._onScroll, { passive: true });
-    this._onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  },
 
-    // active section highlighting
-    const navlinks = root.querySelectorAll('[data-navlink]');
+  _setupSections() {
+    const navlinks = this.root.querySelectorAll('[data-navlink]');
     const sections = ['home','about','services','skills','work','contact']
-      .map(id => root.querySelector('#' + id)).filter(Boolean);
+      .map(id => document.getElementById(id)).filter(Boolean);
     const sio = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -665,9 +792,10 @@ class Component extends DCLogic {
       });
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
     sections.forEach(s => sio.observe(s));
+  },
 
-    // reveal
-    const els = root.querySelectorAll('[data-reveal]');
+  _setupReveal() {
+    const els = this.root.querySelectorAll('[data-reveal]');
     els.forEach(el => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(24px)';
@@ -682,145 +810,9 @@ class Component extends DCLogic {
     }, { threshold: 0.1, rootMargin: '0px 0px -7% 0px' });
     els.forEach(el => io.observe(el));
   }
+};
 
-  componentDidUpdate() {
-    this.applyAccent();
-  }
-
-  applyAccent() {
-    if (!this.root) return;
-    const base = this.props.accent || '#31D8C2';
-    const light = this.root.getAttribute('data-theme') === 'light';
-    const a = light ? this.darken(base, 0.42) : base;
-    this.root.style.setProperty('--accent', a);
-    this.root.style.setProperty('--accent-soft', this.hexToRgba(a, light ? 0.16 : 0.12));
-    this.root.style.setProperty('--accent-glow', this.hexToRgba(a, light ? 0.22 : 0.18));
-  }
-
-  darken(hex, amt) {
-    let h = (hex || '').replace('#', '').trim();
-    if (h.length === 3) h = h.split('').map(c => c + c).join('');
-    const n = parseInt(h, 16);
-    if (isNaN(n) || h.length !== 6) return hex;
-    let r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
-    r = Math.round(r * (1 - amt)); g = Math.round(g * (1 - amt)); b = Math.round(b * (1 - amt));
-    return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
-  }
-
-  hexToRgba(hex, alpha) {
-    let h = (hex || '').replace('#', '').trim();
-    if (h.length === 3) h = h.split('').map(c => c + c).join('');
-    const n = parseInt(h, 16);
-    if (isNaN(n) || h.length !== 6) return `rgba(38,221,193,${alpha})`;
-    const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
-    return `rgba(${r},${g},${b},${alpha})`;
-  }
-
-  applyTheme(mode) {
-    const r = this.root;
-    if (mode === 'light') {
-      r.style.setProperty('--bg', '#EAEBEE');
-      r.style.setProperty('--bg2', '#FFFFFF');
-      r.style.setProperty('--surface', 'rgba(255,255,255,0.75)');
-      r.style.setProperty('--surface2', 'rgba(255,255,255,0.95)');
-      r.style.setProperty('--border', 'rgba(0,0,0,0.12)');
-      r.style.setProperty('--border2', 'rgba(0,0,0,0.22)');
-      r.style.setProperty('--text', '#0A0A0A');
-      r.style.setProperty('--muted', '#4E4E57');
-      r.style.setProperty('--dust', 'rgba(20,20,30,0.5)');
-      r.style.setProperty('--geo', 'rgba(0,0,0,0.06)');
-      r.style.setProperty('--thumb', '#DBDDE2');
-      r.style.setProperty('--nav-scrolled', 'rgba(234,235,238,0.82)');
-      r.setAttribute('data-theme', 'light');
-    } else {
-      r.style.setProperty('--bg', '#0A0A0A');
-      r.style.setProperty('--bg2', '#111111');
-      r.style.setProperty('--surface', 'rgba(255,255,255,0.03)');
-      r.style.setProperty('--surface2', 'rgba(255,255,255,0.055)');
-      r.style.setProperty('--border', 'rgba(255,255,255,0.08)');
-      r.style.setProperty('--border2', 'rgba(255,255,255,0.16)');
-      r.style.setProperty('--text', '#FFFFFF');
-      r.style.setProperty('--muted', '#ACACB6');
-      r.style.setProperty('--dust', 'rgba(255,255,255,0.65)');
-      r.style.setProperty('--geo', 'rgba(255,255,255,0.05)');
-      r.style.setProperty('--thumb', '#0b0b0c');
-      r.style.setProperty('--nav-scrolled', 'rgba(10,10,10,0.7)');
-      r.setAttribute('data-theme', 'dark');
-    }
-    this.applyAccent();
-    const icon = this.root.querySelector('[data-theme-icon]');
-    if (icon) {
-      icon.innerHTML = mode === 'light'
-        ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'
-        : '<path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/>';
-    }
-  }
-
-  renderVals() {
-    return {
-      rootRef: (el) => { if (el) this.root = el; },
-      toggleTheme: () => {
-        const cur = this.root.getAttribute('data-theme');
-        this.applyTheme(cur === 'light' ? 'dark' : 'light');
-      },
-      toggleMenu: () => {
-        const m = this.root.querySelector('[data-mobile-menu]');
-        m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
-      },
-      closeMenu: () => {
-        const m = this.root.querySelector('[data-mobile-menu]');
-        if (m) m.style.display = 'none';
-      },
-      downloadResume: async () => {
-        const src = 'uploads/CV-664079ab.png';
-        const filename = 'Larryjey-Magkidong-CV.png';
-        try {
-          const res = await fetch(src);
-          const blob = await res.blob();
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url; a.download = filename;
-          document.body.appendChild(a); a.click();
-          document.body.removeChild(a);
-          setTimeout(() => URL.revokeObjectURL(url), 1500);
-        } catch (err) {
-          const a = document.createElement('a');
-          a.href = src; a.download = filename; a.target = '_blank';
-          document.body.appendChild(a); a.click();
-          document.body.removeChild(a);
-        }
-      },
-      onSubmit: (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const status = this.root.querySelector('[data-form-status]');
-        const btn = this.root.querySelector('[data-submit]');
-        const data = new FormData(form);
-        const email = (data.get('email') || '').toString();
-        if (!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(email)) {
-          status.style.display = 'block';
-          status.style.background = 'rgba(239,68,68,0.12)';
-          status.style.color = '#fca5a5';
-          status.textContent = 'Please enter a valid email address.';
-          return;
-        }
-        btn.disabled = true; btn.style.opacity = '0.6'; btn.textContent = 'Sending…';
-        setTimeout(() => {
-          btn.textContent = 'Send Message'; btn.disabled = false; btn.style.opacity = '1';
-          form.reset();
-          status.style.display = 'block';
-          status.style.background = 'var(--accent-soft)';
-          status.style.color = 'var(--accent)';
-          status.textContent = "Thanks — your message has been sent. I'll reply soon.";
-        }, 1400);
-      },
-    };
-  }
-
-  componentWillUnmount() {
-    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
-  }
-}
+document.addEventListener('DOMContentLoaded', () => lm.init());
 </script>
 </body>
 </html>
